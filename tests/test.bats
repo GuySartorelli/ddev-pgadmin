@@ -1,9 +1,9 @@
 setup() {
   set -eu -o pipefail
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
-  export TESTDIR=~/tmp/pgadmin
+  export TESTDIR=~/tmp/pgadmin-test
   mkdir -p $TESTDIR
-  export PROJNAME=pgadmin
+  export PROJNAME=pgadmin-test
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
   cd "${TESTDIR}"
@@ -12,8 +12,8 @@ setup() {
 }
 
 health_checks() {
-  # pgAdmin takes pretty large time to start.
-  sleep 10
+  # pgAdmin takes a pretty long time to start.
+  sleep 15
   ddev exec "curl -s http://pgadmin:80/"
 }
 
