@@ -1,0 +1,4 @@
+#!/bin/bash
+
+DDEV_PGADMIN_PORT=8032
+ddev launch :$DDEV_PGADMIN_PORT

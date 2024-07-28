@@ -1,0 +1,26 @@
+services:
+  pgadmin:
+    container_name: ddev-${DDEV_SITENAME}-pgadmin
+    image: dpage/pgadmin4:latest
+    restart: "no"
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    volumes:
+    - "./pgadmin/data:/var/lib/pgadmin"
+    - "./pgadmin/servers.json:/pgadmin4/servers.json"
+    - "./pgadmin/.pass:/pgadmin4/.pass"
+    expose:
+      - "80"
+    environment:
+    - PGADMIN_DEFAULT_EMAIL=example@example.com
+    - PGADMIN_DEFAULT_PASSWORD=db
+    - VIRTUAL_HOST=$DDEV_HOSTNAME
+    - HTTP_EXPOSE=8032:80
+    - HTTPS_EXPOSE=8032:80
+    healthcheck:
+      interval: 120s
+      timeout: 2s
+      retries: 1
+    depends_on:
+      - db

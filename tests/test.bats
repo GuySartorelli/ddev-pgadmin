@@ -1,9 +1,9 @@
 setup() {
   set -eu -o pipefail
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
-  export TESTDIR=~/tmp/test-addon-template
+  export TESTDIR=~/tmp/pgadmin
   mkdir -p $TESTDIR
-  export PROJNAME=test-addon-template
+  export PROJNAME=pgadmin
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
   cd "${TESTDIR}"
@@ -12,9 +12,9 @@ setup() {
 }
 
 health_checks() {
-  # Do something useful here that verifies the add-on
-  # ddev exec "curl -s elasticsearch:9200" | grep "${PROJNAME}-elasticsearch"
-  ddev exec "curl -s https://localhost:443/"
+  # pgAdmin takes pretty large time to start.
+  sleep 10
+  ddev exec "curl -s http://pgadmin:80/"
 }
 
 teardown() {
@@ -36,8 +36,8 @@ teardown() {
 @test "install from release" {
   set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
-  echo "# ddev get ddev/ddev-addon-template with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get ddev/ddev-addon-template
+  echo "# ddev get murznn/pgadmin with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
+  ddev get murznn/pgadmin
   ddev restart >/dev/null
   health_checks
 }
