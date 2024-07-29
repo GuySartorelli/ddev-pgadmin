@@ -11,7 +11,7 @@ This add-on provides a pgAdmin service for [DDEV](https://github.com/ddev/ddev/)
 Installation:
 
 ```
-ddev get ddev/ddev-pgadmin
+ddev get MurzNN/ddev-pgadmin
 ddev restart
 ```
 
@@ -20,6 +20,8 @@ You can run pgAdmin easily with the command after installing this add-on:
 ```
 ddev pgadmin
 ```
+
+Also, it will be available on the url `https://pgadmin.yourprojectname.ddev.site`. If it asks for the database password, enter `db` there.
 
 > [!TIP]
 > For Gitpod: The `ddev pgadmin` command can open a blank page in preview mode, open the link in a new browser tab/window to make it work.
