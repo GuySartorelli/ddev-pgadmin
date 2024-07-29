@@ -14,7 +14,7 @@ setup() {
 health_checks() {
   # pgAdmin takes a pretty long time to start.
   sleep 15
-  ddev exec "curl -s http://pgadmin/login"
+  ddev exec "curl -s http://pgadmin/browser"
 }
 
 teardown() {

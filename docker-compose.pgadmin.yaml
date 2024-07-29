@@ -13,13 +13,11 @@ services:
     expose:
       - "80"
     environment:
-    - PGADMIN_DEFAULT_EMAIL=db@ddev.site
-    - PGADMIN_DEFAULT_PASSWORD=db
     - VIRTUAL_HOST=pgadmin.$DDEV_HOSTNAME
     - HTTP_EXPOSE=80:80
     - HTTPS_EXPOSE=443:80
-    # TODO: This should allow logging in without a password, but doesn't work for some reason. See
-    # - SERVER_MODE=False
+    - PGADMIN_CONFIG_SERVER_MODE=False
+    - PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED=False
     healthcheck:
       interval: 120s
       timeout: 2s
