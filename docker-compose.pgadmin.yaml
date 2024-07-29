@@ -18,6 +18,7 @@ services:
     - HTTPS_EXPOSE=443:80
     - PGADMIN_CONFIG_SERVER_MODE=False
     - PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED=False
+    - PGADMIN_CONFIG_DESKTOP_USER=pgadmin@ddev.site
     healthcheck:
       interval: 120s
       timeout: 2s
